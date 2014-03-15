@@ -11,14 +11,21 @@
 from imdb import IMDb
 
 
-def get_rambo(input):
+def get_films_list(str_search):
     movie_lst = []
 
-    ia = IMDb(accessSystem='mobile')
+    ia = IMDb()
 
-    movie_list = ia.search_movie(input)
+    movie_list = ia.search_movie(str_search)
 
-    for i in movie_list:
-        movie_lst.append(i['year'])
+    for movie in movie_list:
+        movie_dic = {}
+        movie_dic['id'] = movie.movieID
+
+        try:
+            movie_dic['title'] = movie['title'] + ' (' + str(movie['year']) + ')'
+            movie_lst.append(movie_dic)
+        except KeyError:
+            pass
 
     return movie_lst

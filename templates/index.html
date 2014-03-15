@@ -1,18 +1,16 @@
-<!doctype html>
+{% extends "layout.html" %}
 
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Test BeyondCP</title>
-</head>
-
-<body>
-<h2>Hello !</h2>
-
+{% block content %}
 <form action="/search" method="post">
-    <input type="text" name="email"></input>
-    <input type="submit" value="Signup"></input>
+    <input type="text" name="str_search"></input>
+    <input type="submit" value="Search"></input>
 </form>
 
-</body>
-</html>
+<h2>Movies wanted :</h2>
+
+<ul>
+    {% for film in films %}
+    <li><a href="http://www.imdb.com/title/tt{{ film.id }}/">{{ film.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

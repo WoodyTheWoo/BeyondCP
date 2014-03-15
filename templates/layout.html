@@ -1,0 +1,20 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <title>Test BeyondCP</title>
+</head>
+
+<body>
+
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

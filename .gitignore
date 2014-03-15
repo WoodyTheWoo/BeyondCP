@@ -36,4 +36,6 @@ nosetests.xml
 .pydevproject
 
 # Custom
-*.conf
+*.cfg
+*.db
+jquery*.js
