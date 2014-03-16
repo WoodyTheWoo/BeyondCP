@@ -39,3 +39,4 @@ nosetests.xml
 *.cfg
 *.db
 jquery*.js
+purl*.js

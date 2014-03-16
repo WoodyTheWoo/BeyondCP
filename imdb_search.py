@@ -20,10 +20,13 @@ def get_films_list(str_search):
 
     for movie in movie_list:
         movie_dic = {}
-        movie_dic['id'] = movie.movieID
 
         try:
-            movie_dic['title'] = movie['title'] + ' (' + str(movie['year']) + ')'
+            movie_dic['id'] = int(movie.movieID)
+            movie_dic['title'] = movie['title'].replace(' ', '+')
+            movie_dic['year'] = int(movie['year'])
+            movie_dic['str'] = movie['title'] + ' (' + str(movie['year']) + ')'
+
             movie_lst.append(movie_dic)
         except KeyError:
             pass

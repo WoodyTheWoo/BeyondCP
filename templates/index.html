@@ -1,16 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<form action="/search" method="post">
-    <input type="text" name="str_search"></input>
-    <input type="submit" value="Search"></input>
+<form action="/search" method="get">
+    <input type="text" name="str_search">
+    <input type="submit" value="Search">
 </form>
 
 <h2>Movies wanted :</h2>
 
 <ul>
     {% for film in films %}
-    <li><a href="http://www.imdb.com/title/tt{{ film.id }}/">{{ film.title }}</a></li>
+    <li>
+        <a href="http://www.imdb.com/title/tt{{ film.id }}/">{{ film.str }}</a>
+        <a href="/_remove_movie_from_db?id={{ film.db_id }}"><i class="fa fa-times"></i></a>
+    </li>
     {% endfor %}
 </ul>
 {% endblock %}
