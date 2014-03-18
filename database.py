@@ -15,8 +15,8 @@ DATABASE_PATH = 'static/other/database.db'
 
 
 def db_create_table():
+    db = sqlite3.connect(DATABASE_PATH)
     try:
-        db = sqlite3.connect(DATABASE_PATH)
         cursor = db.cursor()
 
         cursor.execute('''CREATE TABLE IF NOT EXISTS
@@ -34,8 +34,8 @@ def db_create_table():
 
 
 def db_insert_movie(movie_title, movie_year, movie_id):
+    db = sqlite3.connect(DATABASE_PATH)
     try:
-        db = sqlite3.connect(DATABASE_PATH)
         cursor = db.cursor()
 
         cursor.execute('''INSERT INTO movies_wanted values(
@@ -50,8 +50,8 @@ def db_insert_movie(movie_title, movie_year, movie_id):
 
 
 def db_remove_movie(db_id):
+    db = sqlite3.connect(DATABASE_PATH)
     try:
-        db = sqlite3.connect(DATABASE_PATH)
         cursor = db.cursor()
 
         cursor.execute('''DELETE FROM movies_wanted WHERE id=?''', db_id)
