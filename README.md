@@ -1,8 +1,12 @@
 BeyondCP
 ========
 
-  pip install flask
-  pip install six
-  
-  
-  python run.py
+Dependencies :
+
+      pip install flask
+      pip install six
+      
+      
+Run :
+
+      python run.py
