@@ -30,9 +30,9 @@ def omdb_search(title):
         movie_dic = {}
 
         if movie['Type'] == 'movie':
-            movie_dic['id'] = movie['imdbID']
-            movie_dic['title'] = movie['Title']
-            movie_dic['year'] = movie['Year']
+            movie_dic['id'] = int(movie['imdbID'].replace('tt', ''))
+            movie_dic['title'] = str(movie['Title'])
+            movie_dic['year'] = int(movie['Year'])
 
             movie_lst.append(movie_dic)
 
