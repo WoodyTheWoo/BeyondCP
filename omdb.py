@@ -9,8 +9,8 @@
 """
 
 import json
-import urllib.request
-import urllib.parse
+
+import six.moves.urllib
 
 
 OMDB_API_URL = "http://www.omdbapi.com/?r=json&s=%s"
@@ -20,8 +20,8 @@ def omdb_search(title):
     movie_lst = []
 
     title = title.encode("utf-8")
-    url = OMDB_API_URL % urllib.parse.quote(title)
-    data = urllib.request.urlopen(url).read().decode("utf-8")
+    url = OMDB_API_URL % six.moves.urllib.parse.quote(title)
+    data = six.moves.urllib.request.urlopen(url).read().decode("utf-8")
     data = json.loads(data)
 
     movie_list = data.get("Search", [])

@@ -38,6 +38,4 @@ nosetests.xml
 # Custom
 *.cfg
 *.db
-jquery*.js
-purl*.js
-.idea/*
+.idea
