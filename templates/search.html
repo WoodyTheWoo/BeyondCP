@@ -4,7 +4,7 @@
 <ul>
     {% for film in films %}
     <li>
-        <a href="http://www.imdb.com/title/tt{{ film.id }}/">{{ film.str }}</a>
+        <a href="http://www.imdb.com/title/tt{{ film.id }}/">{{ film.title }} ({{ film.year }})</a>
         <a class="add" href="/_add_movie_to_db?title={{ film.title }}&year={{ film.year }}&imdb_id={{ film.id }}"><i
                 class="fa fa-check"></i></a>
     </li>
@@ -15,7 +15,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type=text/javascript>$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
-<script type=text/javascript src="{{ url_for('static', filename='purl.js') }}"></script>
-<script type=text/javascript src="{{ url_for('static', filename='add.js') }}"></script>
+<script type=text/javascript src="{{ url_for('static', filename='js/add.js') }}"></script>
 {% endblock %}

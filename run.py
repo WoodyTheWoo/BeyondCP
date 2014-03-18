@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    ~~ BeyondCP - app.py ~~
+    ~~ BeyondCP - run.py ~~
 
 @author         WoodyTheWoo
 @licence        2014
@@ -10,7 +10,7 @@
 
 import flask
 
-import imdb_search
+import omdb
 import database
 
 
@@ -26,7 +26,7 @@ def index():
 @app.route('/search', methods=['GET'])
 def search():
     str_search = flask.request.args['str_search']
-    films_list = imdb_search.get_films_list(str_search)
+    films_list = omdb.omdb_search(str_search)
     return flask.render_template("search.html", films=films_list)
 
 
@@ -36,8 +36,7 @@ def add_movie_to_db():
     year = flask.request.args['year']
     imdb_id = flask.request.args['imdb_id']
     database.db_insert_movie(title, year, imdb_id)
-    #print title, year, imdb_id
-    return flask.jsonify(result=0)
+    return "Movie inserted in database"
 
 
 @app.route('/_remove_movie_from_db', methods=['GET'])
@@ -49,9 +48,9 @@ def remove_movie_from_db():
 
 if __name__ == "__main__":
     try:
-        with open("database.db"):
+        with open("static/other/database.db"):
             pass
-            print "Database OK"
+            print("Database OK")
     except IOError:
         print("Database KO")
         database.db_create_table()
