@@ -1,7 +1,7 @@
-$( "a.add" ).bind( "click", function() {
-    var film = $(this)
+$("a.add").bind("click", function () {
+    var film = $(this);
 
-    $.get($(film).attr("href"), function(data) {
+    $.get($(film).attr("href"), function (data) {
         $(film).parent().hide();
     });
 

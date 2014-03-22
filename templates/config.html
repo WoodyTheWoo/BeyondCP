@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Quality RSS configuration :</h2>
+
+    <div id="quality">
+        <input type="text" name="quality_name_1" placeholder="Quality name">
+        <input type="text" name="quality_rss_1" placeholder="RSS link">
+    </div>
+
+    <input type="submit" value="Done" id="submit">
+
+    <h2><a href="#" id="addQuality">Add another quality</a></h2>
+
+    <h2>Quality options :</h2>
+
+    <ul>
+        {% for quality in qualities %}
+            <li>
+                <a href="{{ quality.rss }}">{{ quality.title }} : {{ quality.rss }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block scripts %}
+    <script type=text/javascript src="{{ url_for('static', filename='js/config.js') }}"></script>
+{% endblock %}

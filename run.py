@@ -12,6 +12,7 @@ import flask
 
 import omdb
 import database
+import rss
 
 
 app = flask.Flask(__name__)
@@ -21,6 +22,12 @@ app = flask.Flask(__name__)
 def index():
     films_list = database.db_list_movies()
     return flask.render_template("index.html", films=films_list)
+
+
+@app.route('/config')
+def config():
+    qualities = database.db_get_quality_settings()
+    return flask.render_template("config.html", qualities=qualities)
 
 
 @app.route('/search', methods=['GET'])
@@ -46,10 +53,33 @@ def remove_movie_from_db():
     return flask.redirect("/")
 
 
+@app.route('/_config_done', methods=['POST'])
+def config_done():
+    quality_settings = flask.request.get_json(force=True)
+
+    for quality in quality_settings:
+        quality_title = quality['title']
+        quality_rss = quality['rss']
+
+        database.db_insert_quality(quality_title, quality_rss)
+
+    return "Quality saved"
+
+
+@app.route('/_search_for_torrents', methods=['GET'])
+def search_for_torrents():
+    films = database.db_list_movies()
+    quality = database.db_get_quality_settings()
+
+    for film in films:
+        rss.search_for_film(quality[1]['rss'], film['title'].replace(':', ''))
+
+    return 'OK'
+
+
 if __name__ == "__main__":
     try:
         with open("static/other/database.db"):
-            pass
             print("Database OK")
     except IOError:
         print("Database KO")

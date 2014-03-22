@@ -13,14 +13,15 @@ import json
 import six.moves.urllib
 
 
-OMDB_API_URL = "http://www.omdbapi.com/?r=json&s=%s"
+OMDB_API_SEARCH_URL = "http://www.omdbapi.com/?r=json&s=%s"
+OMDB_API_ID_URL = "http://www.omdbapi.com/?r=json&i=%s"
 
 
 def omdb_search(title):
     movie_lst = []
 
     title = title.encode("utf-8")
-    url = OMDB_API_URL % six.moves.urllib.parse.quote(title)
+    url = OMDB_API_SEARCH_URL % six.moves.urllib.parse.quote(title)
     data = six.moves.urllib.request.urlopen(url).read().decode("utf-8")
     data = json.loads(data)
 
@@ -37,3 +38,11 @@ def omdb_search(title):
             movie_lst.append(movie_dic)
 
     return movie_lst
+
+
+def omdb_get_poster_url(imdb_id):
+    url = OMDB_API_ID_URL % six.moves.urllib.parse.quote('tt' + str(imdb_id))
+    data = six.moves.urllib.request.urlopen(url).read().decode("utf-8")
+    data = json.loads(data)
+
+    return data.get('Poster', [])
