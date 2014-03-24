@@ -5,10 +5,9 @@ $(document).ready(function () {
     $("#addQuality").bind("click", function () {
 
         FieldCount++;
-        $("#quality").append('<div name="quality_' + FieldCount + '">\
-            <input type="text" name="quality_name_' + FieldCount + '" placeholder="Quality name">\
-            <input type="text" name="quality_rss_' + FieldCount + '" placeholder="RSS link">\
-            </div>');
+        $("#quality").append('<input type="text" name="quality_name_' + FieldCount + '" placeholder="Quality name">\
+                                <input type="text" name="quality_rss_' + FieldCount + '" placeholder="RSS link">\
+                                </br>');
 
         return false;
     });

@@ -1,6 +1,7 @@
 <!doctype html>
 
 <html lang="fr">
+
 <head>
     <meta charset="utf-8">
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery.js') }}"></script>
@@ -9,13 +10,13 @@
 </head>
 
 <body>
-
 <div id="content">
-    {% block content %}
-    {% endblock %}
+    {% block content %} {% endblock %}
 </div>
 
 {% block scripts %}
+<!-- <script src="http://clevo:35729/livereload.js? snipver=1"></script> -->
 {% endblock %}
 </body>
+
 </html>

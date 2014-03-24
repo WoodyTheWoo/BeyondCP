@@ -10,7 +10,6 @@
 
 from apscheduler.scheduler import Scheduler
 
-# Start the scheduler
 sched = Scheduler()
 sched.start()
 
@@ -20,4 +19,3 @@ def job_function():
 
 
 sched.add_interval_job(job_function, seconds=10)
-

@@ -1,20 +1,22 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <ul>
-        {% for film in films %}
-            <li>
-                <a href="http://www.imdb.com/title/tt{{ film.id }}/">{{ film.title }} ({{ film.year }})</a>
-                <a class="add"
-                   href="/_add_movie_to_db?title={{ film.title }}&year={{ film.year }}&imdb_id={{ film.id }}"><i
-                        class="fa fa-check"></i></a>
-            </li>
-        {% endfor %}
-    </ul>
+<ul>
+    {% for film in films %}
+    <li>
+        <a href="http://www.imdb.com/title/tt{{ film.id }}/">
+            {{ film.title }} ({{ film.year }})
+        </a>
+        <a class="add" href="/_add_movie_to_db?title={{ film.title }}&year={{ film.year }}&imdb_id={{ film.id }}">
+            <i class="fa fa-check"></i>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
 
-    <a href="/">Retour</a>
+<a href="/">Retour</a>
 {% endblock %}
 
 {% block scripts %}
-    <script type=text/javascript src="{{ url_for('static', filename='js/add.js') }}"></script>
+<script type=text/javascript src="{{ url_for('static', filename='js/add.js') }}"></script>
 {% endblock %}

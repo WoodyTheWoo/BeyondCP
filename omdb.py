@@ -46,3 +46,6 @@ def omdb_get_poster_url(imdb_id):
     data = json.loads(data)
 
     return data.get('Poster', [])
+
+
+    # TODO Get plot method

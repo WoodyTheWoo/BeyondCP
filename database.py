@@ -19,6 +19,7 @@ def db_create_table():
     try:
         cursor = db.cursor()
 
+        # TODO Add more filed to db movie_wanted (quality, plot, poster, ...)
         cursor.execute('''CREATE TABLE IF NOT EXISTS
                           movies_wanted(id INTEGER PRIMARY KEY,
                                         title TEXT,
@@ -28,6 +29,7 @@ def db_create_table():
 
         db.commit()
 
+        # TODO Remove quality_settings table. Use settings table instead
         cursor.execute('''CREATE TABLE IF NOT EXISTS
                           quality_settings( id INTEGER PRIMARY KEY,
                                             title TEXT,
@@ -78,20 +80,17 @@ def db_list_movies():
     db = sqlite3.connect(DATABASE_PATH)
     cursor = db.cursor()
 
+    # TODO Edit select to fetch more infos
     cursor.execute('''SELECT title, year, imdb_id, id FROM movies_wanted''')
 
     for row in cursor:
-        #print("{0} ({1}) (id: {2})".format(row[0], row[1], row[2]))
-        movie_dic = {}
-        movie_dic['id'] = row[2]
-        movie_dic['str'] = row[0] + ' (' + str(row[1]) + ')'
-        movie_dic['db_id'] = row[3]
-        movie_dic['title'] = row[0]
+        movie_dic = {'id': row[2], 'str': row[0] + ' (' + str(row[1]) + ')', 'db_id': row[3], 'title': row[0]}
         movie_lst.append(movie_dic)
 
     return movie_lst
 
 
+# TODO Delete
 def db_get_quality_settings():
     quality_lst = []
 
@@ -101,15 +100,13 @@ def db_get_quality_settings():
     cursor.execute('''SELECT title, rss_link FROM quality_settings''')
 
     for row in cursor:
-        #print("{0} {1}".format(row[0], row[1]))
-        quality_dic = {}
-        quality_dic['title'] = row[0]
-        quality_dic['rss'] = row[1]
+        quality_dic = {'title': row[0], 'rss': row[1]}
         quality_lst.append(quality_dic)
 
     return quality_lst
 
 
+# TODO Delete
 def db_insert_quality(quality_title, quality_rss):
     db = sqlite3.connect(DATABASE_PATH)
     try:
